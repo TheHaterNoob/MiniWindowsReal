@@ -5,6 +5,7 @@ import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import reproductor.propio.Reproductor;
 import texteditor.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -48,6 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -58,7 +60,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 976, Short.MAX_VALUE)
+            .addGap(0, 1260, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +106,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         FileManager.setForeground(new java.awt.Color(240, 240, 240));
         FileManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MisDocumentos.png"))); // NOI18N
-        FileManager.setText("Navedor y Organizador de Archivos");
+        FileManager.setText("Navegador de Archivos");
         FileManager.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FileManagerMouseClicked(evt);
@@ -123,6 +125,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/music.png"))); // NOI18N
         jMenu5.setText("Musica");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/word.png"))); // NOI18N
@@ -133,6 +140,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cmd.png"))); // NOI18N
+        jMenu7.setText("cmd");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu7);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gnome_application_exit.png"))); // NOI18N
         jMenu2.setText("Salir");
@@ -219,6 +235,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu6MouseClicked
 
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+       Reproductor spotify = new Reproductor();
+        Escritorio.add(spotify);
+        spotify.show();
+    }//GEN-LAST:event_jMenu5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +292,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

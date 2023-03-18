@@ -5,23 +5,16 @@
 package reproductor.propio;
 
 import jaco.mp3.player.MP3Player;
-import java.awt.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Reproductor extends javax.swing.JFrame {
+public class Reproductor extends javax.swing.JInternalFrame {
 
     public Reproductor() {
         initComponents();
-        this.setLocationRelativeTo(null);
+
 
         // Establece el modelo de lista en la lista
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -43,9 +36,11 @@ public class Reproductor extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         play = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+               setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Mi Musica");
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
