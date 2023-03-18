@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.event.TreeModelEvent;
@@ -17,7 +16,6 @@ public class FileSystemModel implements TreeModel {
 
     private File root;
     private Vector listeners = new Vector();
-
     private File copiedFile;
     private boolean isCut;
 
@@ -27,7 +25,6 @@ public class FileSystemModel implements TreeModel {
 
     public Object getRoot() {
         return root;
-
     }
 
     public Object getChild(Object parent, int index) {
@@ -36,7 +33,6 @@ public class FileSystemModel implements TreeModel {
         for (int j = 0; j < children.length; j++) {
             System.out.println(children[j]);
         }
-
         return new FileSystemModel.TreeFile(directory, children[index]);
     }
 
@@ -67,7 +63,6 @@ public class FileSystemModel implements TreeModel {
             }
         }
         return -1;
-
     }
 
     public void valueForPathChanged(TreePath path, Object value) {
@@ -127,27 +122,21 @@ public class FileSystemModel implements TreeModel {
             System.out.println("PAIN AAA");
             return;
         }
-
         if (!destinationFolder.isDirectory()) {
             throw new IllegalArgumentException("Destino no es un folder ");
         }
-
         if (!destinationFolder.exists()) {
             throw new IOException("Destino no existe");
         }
-
         if (destinationFolder.equals(copiedFile.getParentFile())) {
             return;
         }
-
         File targetFile = new File(destinationFolder, copiedFile.getName());
-
         if (isCut) {
             Files.move(copiedFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } else {
             Files.copy(copiedFile.toPath(), targetFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
         }
-
         copiedFile = null;
     }
 
@@ -197,5 +186,22 @@ public class FileSystemModel implements TreeModel {
                 sortByType(file);
             }
         }
+    }
+
+    public void refresh() {
+
+        int[] indices = {0};
+        Object[] children = {root};
+        fireTreeNodesChanged(new TreePath(root), indices, children);
+    }
+
+    public boolean createFolder(File parent, String folderName) {
+        File newFolder = new File(parent, folderName);
+        return newFolder.mkdir();
+    }
+
+    public boolean createFile(File parent, String fileName) throws IOException {
+        File newFile = new File(parent, fileName);
+        return newFile.createNewFile();
     }
 }

@@ -5,6 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -15,18 +17,20 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
     public static String nombre;
     public static String tipo;
     int refresh = 0;
-     File selectedFile;
-private FileSystemModel fileSystemModel;
+    File selectedFile;
+    private FileSystemModel fileSystemModel;
 
     public ManejoFiles() {
         initComponents();
-         File rootDirectory = new File("/");
+        File rootDirectory = new File("/");
         fileSystemModel = new FileSystemModel(rootDirectory);
-        
+
         JMenuItem copyItem = new JMenuItem("Copy");
         JMenuItem cutItem = new JMenuItem("Cut");
         JMenuItem pasteItem = new JMenuItem("Paste");
         JMenuItem refreshyep = new JMenuItem("Refresh");
+        JMenuItem createfile = new JMenuItem("New File");
+        JMenuItem createfolder = new JMenuItem("New Folder");
         JMenuItem sortName = new JMenuItem("Sort by Name");
         JMenuItem sortDate = new JMenuItem("Sort by Date");
         popupMenu.add(copyItem);
@@ -35,6 +39,8 @@ private FileSystemModel fileSystemModel;
         popupMenu.add(refreshyep);
         popupMenu.add(sortName);
         popupMenu.add(sortDate);
+        popupMenu.add(createfile);
+        popupMenu.add(createfolder);
         jTree1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -49,40 +55,60 @@ private FileSystemModel fileSystemModel;
             }
         });
         copyItem.setAction(new AbstractAction("Copy") {
-    public void actionPerformed(ActionEvent e) {
-       selectedFile = (File) jTree1.getLastSelectedPathComponent();
-       copyFile(selectedFile);
-    }
-});
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                copyFile(selectedFile);
+            }
+        });
 
-cutItem.setAction(new AbstractAction("Cut") {
-    public void actionPerformed(ActionEvent e) {
-        selectedFile = (File) jTree1.getLastSelectedPathComponent();
-       cutFile(selectedFile);
-    }
-});
+        cutItem.setAction(new AbstractAction("Cut") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                cutFile(selectedFile);
+            }
+        });
 
-pasteItem.setAction(new AbstractAction("Paste") {
-    public void actionPerformed(ActionEvent e) {
-        File  LastFile =  (File) jTree1.getLastSelectedPathComponent();
-       pasteFile(LastFile);
-    }
-});
-refreshyep.setAction(new AbstractAction("Refresh") {
-    public void actionPerformed(ActionEvent e) {
-        refreshing();
-    }
-});
- sortName.setAction(new AbstractAction("Sort by Name") {
-    public void actionPerformed(ActionEvent e) {
-       sortbyName();
-    }
-});
-  sortDate.setAction(new AbstractAction("Sort by Date") {
-    public void actionPerformed(ActionEvent e) {
-       sortbyDate();
-    }
-});
+        pasteItem.setAction(new AbstractAction("Paste") {
+            public void actionPerformed(ActionEvent e) {
+                File LastFile = (File) jTree1.getLastSelectedPathComponent();
+                pasteFile(LastFile);
+            }
+        });
+        refreshyep.setAction(new AbstractAction("Refresh") {
+            public void actionPerformed(ActionEvent e) {
+                refreshing();
+            }
+        });
+        sortName.setAction(new AbstractAction("Sort by Name") {
+            public void actionPerformed(ActionEvent e) {
+                sortbyName();
+            }
+        });
+        sortDate.setAction(new AbstractAction("Sort by Date") {
+            public void actionPerformed(ActionEvent e) {
+                sortbyDate();
+            }
+        });
+         createfile.setAction(new AbstractAction("New File") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                try {
+                    newFile(selectedFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+          createfolder.setAction(new AbstractAction("New Folder") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                try {
+                    newFolder(selectedFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -124,52 +150,67 @@ refreshyep.setAction(new AbstractAction("Refresh") {
     private void jTree1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTree1FocusGained
         if (refresh == 0) {
             refresh++;
-            refreshing();
+            if (tipo.equals("Administrador")) {
+                jTree1.setModel(new FileSystemModel(new File("Z")));
+            } else {
+                jTree1.setModel(new FileSystemModel(new File("Z/" + nombre)));
+            }
         }
     }//GEN-LAST:event_jTree1FocusGained
-private void copyFile(File file) {
-    fileSystemModel.copyFile(file);
-}
-
-private void cutFile(File file) {
-    fileSystemModel.cutFile(file);
-}
-
-private void pasteFile(File destinationFolder) {
-    try {
-        fileSystemModel.pasteFile(destinationFolder);
-        refreshing();
-    } catch (IOException e) {
-        e.printStackTrace();
+    private void copyFile(File file) {
+        fileSystemModel.copyFile(file);
     }
-    
-}
+
+    private void cutFile(File file) {
+        fileSystemModel.cutFile(file);
+    }
+
+    private void pasteFile(File destinationFolder) {
+        try {
+            fileSystemModel.pasteFile(destinationFolder);
+            refreshing();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void refreshing() {
         if (tipo.equals("Administrador")) {
-            jTree1.setModel(new FileSystemModel(new File("Z")));
+            FileSystemModel model = new FileSystemModel(new File("Z"));
+            model.refresh();
+            jTree1.setModel(model);
         } else {
-            jTree1.setModel(new FileSystemModel(new File("Z/" + nombre)));
+            FileSystemModel model = new FileSystemModel(new File("Z/" + nombre));
+            model.refresh();
+            jTree1.setModel(model);
         }
-        
     }
+
     private void sortbyName() {
         if (tipo.equals("Administrador")) {
-        fileSystemModel.sortByName(new File("Z"));
-        }else {
-            fileSystemModel.sortByName(new File("Z/"+nombre));
+            fileSystemModel.sortByName(new File("Z"));
+        } else {
+            fileSystemModel.sortByName(new File("Z/" + nombre));
         }
-    
-}
-        private void sortbyDate() {
-        if (tipo.equals("Administrador")) {
-        fileSystemModel.sortByDate(new File("Z"));
-       
-        }else {
-            fileSystemModel.sortByDate(new File("Z/"+nombre));
-        }
-    
-}
 
+    }
+
+    private void sortbyDate() {
+        if (tipo.equals("Administrador")) {
+            fileSystemModel.sortByDate(new File("Z"));
+        } else {
+            fileSystemModel.sortByDate(new File("Z/" + nombre));
+        }
+ 
+    }
+    private void newFile(File file) throws IOException{
+        fileSystemModel.createFile(file, "New File");
+        refreshing();
+    }
+        private void newFolder(File file) throws IOException{
+        fileSystemModel.createFolder(file, "New Folder");
+        refreshing();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
