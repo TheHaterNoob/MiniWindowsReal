@@ -241,7 +241,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
        Reproductor spotify = new Reproductor();
+      spotify.nombre=this.nombreIngresado;
+      spotify.tipo=this.tipoIngresado;
         Escritorio.add(spotify);
+        
         spotify.show();
     }//GEN-LAST:event_jMenu5MouseClicked
 

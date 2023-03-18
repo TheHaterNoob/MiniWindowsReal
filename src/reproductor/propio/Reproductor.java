@@ -11,7 +11,8 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Reproductor extends javax.swing.JInternalFrame {
-
+    public  String tipo;
+   public  String nombre;
     public Reproductor() {
         initComponents();
 
@@ -122,6 +123,11 @@ private int currentIndex = -1;
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // Crea un objeto JFileChooser
         JFileChooser fileChooser = new JFileChooser();
+         if (tipo.equals("Administrador")) {
+            fileChooser.setCurrentDirectory(new File("Z"));
+        } else {
+            fileChooser.setCurrentDirectory(new File("Z/"+nombre));
+        }
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos MP3", "mp3");
         fileChooser.setFileFilter(filter);
 
