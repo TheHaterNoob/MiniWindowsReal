@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 public class ManejoFiles extends javax.swing.JInternalFrame {
@@ -25,22 +26,25 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         File rootDirectory = new File("/");
         fileSystemModel = new FileSystemModel(rootDirectory);
 
-        JMenuItem copyItem = new JMenuItem("Copy");
-        JMenuItem cutItem = new JMenuItem("Cut");
-        JMenuItem pasteItem = new JMenuItem("Paste");
-        JMenuItem refreshyep = new JMenuItem("Refresh");
-        JMenuItem createfile = new JMenuItem("New File");
-        JMenuItem createfolder = new JMenuItem("New Folder");
-        JMenuItem sortName = new JMenuItem("Sort by Name");
-        JMenuItem sortDate = new JMenuItem("Sort by Date");
+        JMenuItem copyItem = new JMenuItem("Copiar");
+        JMenuItem cutItem = new JMenuItem("Cortar");
+        JMenuItem pasteItem = new JMenuItem("Pegar");
+        JMenuItem rename = new JMenuItem("Renombrar");
+        JMenuItem refreshyep = new JMenuItem("Refrescar");
+        JMenuItem createfile = new JMenuItem("Nuevo Archivo");
+        JMenuItem createfolder = new JMenuItem("Nuevo Folder");
+        JMenuItem sortName = new JMenuItem("Ver por Nombre");
+        JMenuItem sortDate = new JMenuItem("Ver por Fecha");
         popupMenu.add(copyItem);
         popupMenu.add(cutItem);
         popupMenu.add(pasteItem);
+        popupMenu.add(rename);
         popupMenu.add(refreshyep);
         popupMenu.add(sortName);
         popupMenu.add(sortDate);
         popupMenu.add(createfile);
         popupMenu.add(createfolder);
+
         jTree1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -79,6 +83,37 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 refreshing();
             }
         });
+        createfile.setAction(new AbstractAction("New File") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                try {
+                    newFile(selectedFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        createfolder.setAction(new AbstractAction("New Folder") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                try {
+                    newFolder(selectedFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        rename.setAction(new AbstractAction("Renombrar") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                String renombre = JOptionPane.showInputDialog(null, "renombrar", null);
+                try {
+                    rename(selectedFile,renombre);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         sortName.setAction(new AbstractAction("Sort by Name") {
             public void actionPerformed(ActionEvent e) {
                 sortbyName();
@@ -89,26 +124,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 sortbyDate();
             }
         });
-         createfile.setAction(new AbstractAction("New File") {
-            public void actionPerformed(ActionEvent e) {
-                selectedFile = (File) jTree1.getLastSelectedPathComponent();
-                try {
-                    newFile(selectedFile);
-                } catch (IOException ex) {
-                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-          createfolder.setAction(new AbstractAction("New Folder") {
-            public void actionPerformed(ActionEvent e) {
-                selectedFile = (File) jTree1.getLastSelectedPathComponent();
-                try {
-                    newFolder(selectedFile);
-                } catch (IOException ex) {
-                    Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -201,14 +217,21 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         } else {
             fileSystemModel.sortByDate(new File("Z/" + nombre));
         }
- 
+
     }
-    private void newFile(File file) throws IOException{
+
+    private void newFile(File file) throws IOException {
         fileSystemModel.createFile(file, "New File");
         refreshing();
     }
-        private void newFolder(File file) throws IOException{
+
+    private void newFolder(File file) throws IOException {
         fileSystemModel.createFolder(file, "New Folder");
+        refreshing();
+    }
+
+    private void rename(File file, String string) throws IOException {
+        fileSystemModel.rename(file, string);
         refreshing();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

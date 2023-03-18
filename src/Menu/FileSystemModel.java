@@ -1,6 +1,7 @@
 package Menu;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -203,5 +204,34 @@ public class FileSystemModel implements TreeModel {
     public boolean createFile(File parent, String fileName) throws IOException {
         File newFile = new File(parent, fileName);
         return newFile.createNewFile();
+    }
+
+    public boolean rename(File file, String newName) throws IOException {
+        if (!file.exists()) {
+            throw new FileNotFoundException("The file or folder does not exist");
+        }
+
+        File newFile = new File(file.getParent(), newName + getFileExtension(file));
+        if (newFile.exists()) {
+            throw new IOException("A file or folder with the same name already exists");
+        }
+
+        boolean renamed = file.renameTo(newFile);
+        if (renamed) {
+            int[] indices = {getIndexOfChild(file.getParentFile(), newFile)};
+            Object[] children = {new TreeFile(file.getParentFile(), newName)};
+            fireTreeNodesChanged(new TreePath(file.getParentFile()), indices, children);
+        }
+        return renamed;
+    }
+
+    private static String getFileExtension(File file) {
+        String extension = "";
+        String fileName = file.getName();
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            extension = "." + fileName.substring(dotIndex + 1);
+        }
+        return extension;
     }
 }
