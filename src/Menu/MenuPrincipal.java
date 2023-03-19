@@ -2,7 +2,7 @@ package Menu;
 
 import Usuarios.*;
 import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
-import com.mycompany.miniredsocial.LogIn;
+import com.mycompany.miniredsocial.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -11,9 +11,10 @@ import texteditor.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    public String nombreIngresado;
+    public static String nombreIngresado;
     public String tipoIngresado;
     public String contra;
+    
 
     CrearcionUsuarios CU = new CrearcionUsuarios();
     ManejoFiles MF = new ManejoFiles();
@@ -53,8 +54,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -68,7 +69,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -158,6 +159,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu7);
 
+        jMenu3.setForeground(new java.awt.Color(240, 240, 240));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
+        jMenu3.setText("MiniRed");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
         jMenu2.setForeground(new java.awt.Color(240, 240, 240));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gnome_application_exit.png"))); // NOI18N
         jMenu2.setText("Salir");
@@ -172,16 +183,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setForeground(new java.awt.Color(240, 240, 240));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
-        jMenu3.setText("MiniRed");
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -240,6 +241,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         Imagenes XD = new Imagenes();
+
         Escritorio.add(XD);
         XD.show();
 
@@ -270,9 +272,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
         
-        LogIn mp = new LogIn(Escritorio);
+      /*  LogIn mp = new LogIn(Escritorio);
         Escritorio.add(mp);
-        mp.show();
+        mp.show();*/
     }//GEN-LAST:event_jMenu3MouseClicked
 
     /**

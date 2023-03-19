@@ -9,7 +9,6 @@ import java.io.File;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.netbeans.lib.awtextra.*;
 
 public class Reproductor extends javax.swing.JInternalFrame {
 
@@ -40,11 +39,7 @@ public class Reproductor extends javax.swing.JInternalFrame {
         play = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
 
- setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("Mi musica");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

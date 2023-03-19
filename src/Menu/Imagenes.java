@@ -1,23 +1,26 @@
-
 package Menu;
-import javax.swing.ImageIcon;
-public class Imagenes extends javax.swing.JInternalFrame 
-{
-    ImageIcon Imagen[] = new ImageIcon[6];
-    int contador = 1;
-    
-    public Imagenes() 
-    { 
-        initComponents(); 
-        this.setTitle("Mis Imagenes"); 
-        for(int i = 1; i < 5;i ++) 
-        { 
-            Imagen[i] = new ImageIcon(getClass().getResource("/Imagenes/img" + i + ".jpg"));
-        } 
-        
-        jLabel1.setIcon(Imagen[1]);
-    }
 
+import javax.swing.ImageIcon;
+import java.io.File;
+import javax.swing.JLabel;
+
+public class Imagenes extends javax.swing.JInternalFrame {
+    private File[] imageFiles;
+    private int currentIndex;
+
+    public Imagenes() {
+        initComponents();
+        this.setTitle("Mis Imagenes");
+        File imageFolder = new File("Z/" + MenuPrincipal.nombreIngresado+"/Mis Imagenes");
+
+        imageFiles = imageFolder.listFiles();
+
+            ImageIcon initialIcon = new ImageIcon(imageFiles[currentIndex].getPath());
+        currentIndex = 0;
+
+
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -27,10 +30,7 @@ public class Imagenes extends javax.swing.JInternalFrame
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-	setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -54,7 +54,7 @@ public class Imagenes extends javax.swing.JInternalFrame
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, 90, 23));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/img2.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NJwOu0.png"))); // NOI18N
         jLabel3.setText("Miisz");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -60, 800, 640));
 
@@ -62,21 +62,21 @@ public class Imagenes extends javax.swing.JInternalFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(contador == 4) 
-        { 
-            contador = 0;
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = imageFiles.length - 1;
         }
-        contador ++; 
-        jLabel1.setIcon(Imagen[contador]);
+        ImageIcon newIcon = new ImageIcon(imageFiles[currentIndex].getPath());
+        jLabel1.setIcon(newIcon);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(contador == 1) 
-        { 
-            contador = 5;
-        } 
-        contador --;
-        jLabel1.setIcon(Imagen[contador]);
+        currentIndex++;
+        if (currentIndex >= imageFiles.length) {
+            currentIndex = 0;
+        }
+        ImageIcon newIcon = new ImageIcon(imageFiles[currentIndex].getPath());
+        jLabel1.setIcon(newIcon);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
