@@ -29,6 +29,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setPreferredSize(screenSize);
 
+        this.setMaximumSize(screenSize);
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
@@ -47,7 +48,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         CreacionUsuarios = new javax.swing.JMenu();
         FileManager = new javax.swing.JMenu();
@@ -64,25 +64,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/retro-car-vaporwave-thumb.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setMinimumSize(new java.awt.Dimension(1535, 885));
-
-        Escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1013, Short.MAX_VALUE))
+            .addGap(0, 2974, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 121, Short.MAX_VALUE))
+            .addGap(0, 1201, Short.MAX_VALUE)
         );
 
         jPanel1.add(Escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -275,10 +265,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
+
+        LogIn mp = new LogIn(Escritorio);
         
-      /*  LogIn mp = new LogIn(Escritorio);
+        mp.setVisible(true);
         Escritorio.add(mp);
-        mp.show();*/
     }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
@@ -289,7 +280,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu CreacionUsuarios;
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu FileManager;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

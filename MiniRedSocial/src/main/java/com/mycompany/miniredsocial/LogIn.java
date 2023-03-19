@@ -34,11 +34,7 @@ public class LogIn extends javax.swing.JInternalFrame {
     public LogIn(javax.swing.JDesktopPane escritorio) {
         
         FlatMaterialPalenightIJTheme.setup();
-        
-        FlatMaterialPalenightIJTheme.setup();
-        
         initComponents();
-        
         this.setVisible(true);
         
         this.escritorio = escritorio;
@@ -91,7 +87,13 @@ public class LogIn extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("MiniRed");
-        setFrameIcon(new javax.swing.ImageIcon("C:\\Users\\kelvi\\OneDrive\\Documentos\\Doc Clases\\Programacion II\\MiniRedSocial\\varios\\icon.png")); // NOI18N
+        setFrameIcon(null);
+        try {
+            setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/retro-futuristic-80s-background-free-vector.jpg"))); // NOI18N
