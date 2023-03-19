@@ -2,9 +2,11 @@ package Menu;
 
 import Usuarios.*;
 import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
+import com.mycompany.miniredsocial.LogIn;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import reproductor.propio.Reproductor;  
 import texteditor.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -16,6 +18,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     CrearcionUsuarios CU = new CrearcionUsuarios();
     ManejoFiles MF = new ManejoFiles();
 
+    
+    
     public MenuPrincipal() {
         FlatDraculaIJTheme.setup();
 
@@ -48,7 +52,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -58,7 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 976, Short.MAX_VALUE)
+            .addGap(0, 1260, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +110,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         FileManager.setForeground(new java.awt.Color(240, 240, 240));
         FileManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MisDocumentos.png"))); // NOI18N
-        FileManager.setText("Navedor y Organizador de Archivos");
+        FileManager.setText("Navegador de Archivos");
         FileManager.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FileManagerMouseClicked(evt);
@@ -112,6 +118,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(FileManager);
 
+        jMenu4.setForeground(new java.awt.Color(240, 240, 240));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/images.png"))); // NOI18N
         jMenu4.setText("Imagenes");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,10 +128,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setForeground(new java.awt.Color(240, 240, 240));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/music.png"))); // NOI18N
         jMenu5.setText("Musica");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setForeground(new java.awt.Color(240, 240, 240));
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/word.png"))); // NOI18N
         jMenu6.setText("word");
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,6 +148,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setForeground(new java.awt.Color(240, 240, 240));
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cmd.png"))); // NOI18N
+        jMenu7.setText("cmd");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu7);
+
+        jMenu2.setForeground(new java.awt.Color(240, 240, 240));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gnome_application_exit.png"))); // NOI18N
         jMenu2.setText("Salir");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,6 +172,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setForeground(new java.awt.Color(240, 240, 240));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
+        jMenu3.setText("MiniRed");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -219,43 +254,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu6MouseClicked
 
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+       Reproductor spotify = new Reproductor();
+        Escritorio.add(spotify);
+        spotify.show();
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        
+        LogIn mp = new LogIn(Escritorio);
+        Escritorio.add(mp);
+        mp.show();
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu CreacionUsuarios;
@@ -263,9 +282,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu FileManager;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
