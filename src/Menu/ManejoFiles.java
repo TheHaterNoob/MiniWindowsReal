@@ -33,6 +33,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         JMenuItem refreshyep = new JMenuItem("Refrescar");
         JMenuItem createfile = new JMenuItem("Nuevo Archivo");
         JMenuItem createfolder = new JMenuItem("Nuevo Folder");
+        JMenuItem organizar = new JMenuItem("Organizar");
         JMenuItem sortName = new JMenuItem("Ver por Nombre");
         JMenuItem sortDate = new JMenuItem("Ver por Fecha");
         popupMenu.add(copyItem);
@@ -40,10 +41,11 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         popupMenu.add(pasteItem);
         popupMenu.add(rename);
         popupMenu.add(refreshyep);
-        popupMenu.add(sortName);
-        popupMenu.add(sortDate);
         popupMenu.add(createfile);
         popupMenu.add(createfolder);
+        popupMenu.add(organizar);
+        popupMenu.add(sortName);
+        popupMenu.add(sortDate);
 
         jTree1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -89,6 +91,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 try {
                     newFile(selectedFile);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR (usualmente es por no seleccionar un folder)", "ERROR", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -99,6 +102,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 try {
                     newFolder(selectedFile);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR (usualmente es por no seleccionar un folder)", "ERROR", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -108,9 +112,20 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 selectedFile = (File) jTree1.getLastSelectedPathComponent();
                 String renombre = JOptionPane.showInputDialog(null, "renombrar", null);
                 try {
-                    rename(selectedFile,renombre);
+                    rename(selectedFile, renombre);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(ManejoFiles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        organizar.setAction(new AbstractAction("Organizar") {
+            public void actionPerformed(ActionEvent e) {
+                selectedFile = (File) jTree1.getLastSelectedPathComponent();
+                if (selectedFile.isDirectory()) {
+                    organizar(selectedFile);
+                }else{
+                JOptionPane.showMessageDialog(null, "por favor seleccione un folder", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -186,6 +201,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
             fileSystemModel.pasteFile(destinationFolder);
             refreshing();
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "ERROR (usualmente es por no seleccionar un folder)", "ERROR", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -232,6 +248,11 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
 
     private void rename(File file, String string) throws IOException {
         fileSystemModel.rename(file, string);
+        refreshing();
+    }
+
+    private void organizar(File file) {
+        fileSystemModel.sortFiles(file);
         refreshing();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

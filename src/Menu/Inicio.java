@@ -212,7 +212,7 @@ public class Inicio extends javax.swing.JFrame {
                 String tipo=u.encontrartipo(nombre, contra);
                 JOptionPane.showMessageDialog(this, "Bienvenido!");
                 System.out.println("Usuario ingresado tipo: "+tipo);
-               
+                System.out.println(nombre);
                 this.dispose();
                 
                 MenuPrincipal m = new MenuPrincipal();

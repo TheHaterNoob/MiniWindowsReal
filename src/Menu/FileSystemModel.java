@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
@@ -32,7 +33,7 @@ public class FileSystemModel implements TreeModel {
         File directory = (File) parent;
         String[] children = directory.list();
         for (int j = 0; j < children.length; j++) {
-            System.out.println(children[j]);
+            //      System.out.println(children[j]);
         }
         return new FileSystemModel.TreeFile(directory, children[index]);
     }
@@ -120,14 +121,17 @@ public class FileSystemModel implements TreeModel {
 
     public void pasteFile(File destinationFolder) throws IOException {
         if (copiedFile == null) {
+            JOptionPane.showMessageDialog(null, "Error :(", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.out.println("PAIN AAA");
             return;
         }
         if (!destinationFolder.isDirectory()) {
-            throw new IllegalArgumentException("Destino no es un folder ");
+            JOptionPane.showMessageDialog(null, "Destino no es folder", "ERROR", JOptionPane.ERROR_MESSAGE);
+            throw new IllegalArgumentException("");
         }
         if (!destinationFolder.exists()) {
-            throw new IOException("Destino no existe");
+            JOptionPane.showMessageDialog(null, "Destino no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            throw new IOException("");
         }
         if (destinationFolder.equals(copiedFile.getParentFile())) {
             return;
@@ -208,12 +212,15 @@ public class FileSystemModel implements TreeModel {
 
     public boolean rename(File file, String newName) throws IOException {
         if (!file.exists()) {
-            throw new FileNotFoundException("The file or folder does not exist");
+            JOptionPane.showMessageDialog(null, "Archivo o folder no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            throw new FileNotFoundException("");
         }
 
         File newFile = new File(file.getParent(), newName + getFileExtension(file));
         if (newFile.exists()) {
-            throw new IOException("A file or folder with the same name already exists");
+            JOptionPane.showMessageDialog(null, "Ese Nombre ya existe!!!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            throw new IOException("");
+
         }
 
         boolean renamed = file.renameTo(newFile);
@@ -232,6 +239,67 @@ public class FileSystemModel implements TreeModel {
         if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
             extension = "." + fileName.substring(dotIndex + 1);
         }
+        System.out.println("A:  " + extension);
+
         return extension;
+    }
+
+    public void sortFiles(File directorio) {
+        File fileroot = new File("Z/" + ManejoFiles.nombre + "/");
+        File imageDir = new File(fileroot, "Mis Imagenes");
+        File docDir = new File(fileroot, "Mis Documentos");
+        File musicDir = new File(fileroot, "Mi Musica");
+
+        File[] files = fileroot.listFiles();
+        for (File file : files) {
+            if (file.isFile()) {
+                String extension = getFileExtension2(file.getName());
+                if (extension != null) {
+                    extension = extension.toLowerCase();
+
+                    switch (extension) {
+                        case "jpg":
+                        case "png":
+                        case "gif":
+
+                            moveFile(file, imageDir);
+
+                            break;
+                        case "doc":
+                        case "docx":
+                        case "pdf":
+                        case "txt":
+                            moveFile(file, docDir);
+                            break;
+                        case "mp3":
+                        case "wav":
+                        case "flac":
+                            moveFile(file, musicDir);
+                            break;
+                        default:
+
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void moveFile(File file, File destDir) {
+        File destFile = new File(destDir, file.getName());
+        if (!destFile.exists()) {
+            file.renameTo(destFile);
+        }
+    }
+
+    private String getFileExtension2(String fileName) {
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            System.out.println("YEP2");
+            System.out.println(fileName.substring(dotIndex + 1));
+            return fileName.substring(dotIndex + 1);
+        } else {
+            return null;
+        }
     }
 }
