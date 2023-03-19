@@ -1,6 +1,7 @@
 package Menu;
 
 import Usuarios.*;
+import cmd.principal;
 import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
 import com.mycompany.miniredsocial.*;
 import java.awt.Dimension;
@@ -265,7 +266,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu6MouseClicked
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-        // TODO add your handling code here:
+        principal cmd = new principal();
+        cmd.nombre=this.nombreIngresado;
+        cmd.tipo = this.tipoIngresado;
+        Escritorio.add(cmd);
+        cmd.show();
     }//GEN-LAST:event_jMenu7MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked

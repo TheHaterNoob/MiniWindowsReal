@@ -15,14 +15,13 @@ import java.util.Date;
  *
  * @author Alejandro
  */
-public class principal extends javax.swing.JFrame {
+public class principal extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form principal
-     */
+    public static String tipo;
+    public static String nombre;
     public principal() {
         initComponents();
-        this.setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -41,7 +40,11 @@ public class principal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,19 +62,22 @@ public class principal extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setBackground(new java.awt.Color(51, 51, 51));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(153, 0, 153));
+        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 204)));
+        jTextArea1.setCaretColor(new java.awt.Color(51, 51, 51));
+        jTextArea1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 640, 370));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
         jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(153, 0, 153));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 0, 153)));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 530, 40));
 
