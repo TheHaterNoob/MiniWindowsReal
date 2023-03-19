@@ -26,7 +26,9 @@ public class Principal extends javax.swing.JInternalFrame {
 
     public static String tipo;
    public static String nombre;
+   
     public Principal() {
+        
         initComponents();
         doc = tp_texto.getStyledDocument();
         estilo = tp_texto.addStyle("miEstilo", null);
@@ -39,6 +41,7 @@ public class Principal extends javax.swing.JInternalFrame {
         }
         cb_font.setModel(modelo);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
 
     }
 
