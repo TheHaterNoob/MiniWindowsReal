@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Menu;
 
 import java.io.File;
@@ -6,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.event.TreeModelEvent;
@@ -14,14 +17,18 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-public class FileSystemModel implements TreeModel {
+/**
+ *
+ * @author alex1
+ */
+public class NameSortedFileSystemModel implements TreeModel {
 
     private File root;
-    private Vector listeners = new Vector();
+    private Vector<TreeModelListener> listeners = new Vector<>();
     private File copiedFile;
     private boolean isCut;
 
-    public FileSystemModel(File rootDirectory) {
+    public NameSortedFileSystemModel(File rootDirectory) {
         root = rootDirectory;
     }
 
@@ -30,22 +37,18 @@ public class FileSystemModel implements TreeModel {
     }
 
     public Object getChild(Object parent, int index) {
+        //Changed
         File directory = (File) parent;
         String[] children = directory.list();
-        for (int j = 0; j < children.length; j++) {
-            //      System.out.println(children[j]);
-        }
-        return new FileSystemModel.TreeFile(directory, children[index]);
+        Arrays.sort(children); // sort children by name
+        return new TreeFile(directory, children[index]);
     }
 
     public int getChildCount(Object parent) {
         File file = (File) parent;
         if (file.isDirectory()) {
             String[] fileList = file.list();
-
-            if (fileList != null) {
-                return file.list().length;
-            }
+            return (fileList != null) ? fileList.length : 0;
         }
         return 0;
     }
@@ -56,9 +59,11 @@ public class FileSystemModel implements TreeModel {
     }
 
     public int getIndexOfChild(Object parent, Object child) {
+        //Changed
         File directory = (File) parent;
         File file = (File) child;
         String[] children = directory.list();
+        Arrays.sort(children); // sort children by name
         for (int i = 0; i < children.length; i++) {
             if (file.getName().equals(children[i])) {
                 return i;
@@ -82,10 +87,7 @@ public class FileSystemModel implements TreeModel {
 
     private void fireTreeNodesChanged(TreePath parentPath, int[] indices, Object[] children) {
         TreeModelEvent event = new TreeModelEvent(this, parentPath, indices, children);
-        Iterator iterator = listeners.iterator();
-        TreeModelListener listener = null;
-        while (iterator.hasNext()) {
-            listener = (TreeModelListener) iterator.next();
+        for (TreeModelListener listener : listeners) {
             listener.treeNodesChanged(event);
         }
     }
@@ -98,7 +100,7 @@ public class FileSystemModel implements TreeModel {
         listeners.remove(listener);
     }
 
-    private class TreeFile extends File {
+    private  class TreeFile extends File {
 
         public TreeFile(File parent, String child) {
             super(parent, child);
@@ -108,8 +110,7 @@ public class FileSystemModel implements TreeModel {
             return getName();
         }
     }
-
-    public void copyFile(File file) {
+       public void copyFile(File file) {
         copiedFile = file;
         isCut = false;
     }
@@ -144,6 +145,7 @@ public class FileSystemModel implements TreeModel {
         }
         copiedFile = null;
     }
+
     public void refresh() {
 
         int[] indices = {0};
@@ -177,7 +179,7 @@ public class FileSystemModel implements TreeModel {
         boolean renamed = file.renameTo(newFile);
         if (renamed) {
             int[] indices = {getIndexOfChild(file.getParentFile(), newFile)};
-            Object[] children = {new TreeFile(file.getParentFile(), newName)};
+            Object[] children = {new NameSortedFileSystemModel.TreeFile(file.getParentFile(), newName)};
             fireTreeNodesChanged(new TreePath(file.getParentFile()), indices, children);
         }
         return renamed;
@@ -254,3 +256,5 @@ public class FileSystemModel implements TreeModel {
         }
     }
 }
+
+

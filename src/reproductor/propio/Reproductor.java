@@ -9,12 +9,15 @@ import java.io.File;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.netbeans.lib.awtextra.*;
 
 public class Reproductor extends javax.swing.JInternalFrame {
 
+    public String tipo;
+    public String nombre;
+
     public Reproductor() {
         initComponents();
-
 
         // Establece el modelo de lista en la lista
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -36,11 +39,13 @@ public class Reproductor extends javax.swing.JInternalFrame {
         btnAgregar = new javax.swing.JButton();
         play = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
-               setClosable(true);
+
+ setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mi Musica");
+        setTitle("Mi musica");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,19 +93,10 @@ public class Reproductor extends javax.swing.JInternalFrame {
         });
         jPanel2.add(play, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 70, 70));
 
-        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/propio/output-onlinegiftools (1).gif"))); // NOI18N
+        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/propio/output-onlinegiftools(1).gif"))); // NOI18N
         jPanel2.add(FONDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 500));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,6 +118,11 @@ private int currentIndex = -1;
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // Crea un objeto JFileChooser
         JFileChooser fileChooser = new JFileChooser();
+        if (tipo.equals("Administrador")) {
+            fileChooser.setCurrentDirectory(new File("Z"));
+        } else {
+            fileChooser.setCurrentDirectory(new File("Z/" + nombre));
+        }
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos MP3", "mp3");
         fileChooser.setFileFilter(filter);
 

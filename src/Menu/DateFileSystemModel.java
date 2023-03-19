@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-public class FileSystemModel implements TreeModel {
+public class DateFileSystemModel implements TreeModel {
 
     private File root;
     private Vector listeners = new Vector();
     private File copiedFile;
     private boolean isCut;
 
-    public FileSystemModel(File rootDirectory) {
+    public DateFileSystemModel(File rootDirectory) {
         root = rootDirectory;
     }
 
@@ -31,21 +32,19 @@ public class FileSystemModel implements TreeModel {
 
     public Object getChild(Object parent, int index) {
         File directory = (File) parent;
-        String[] children = directory.list();
-        for (int j = 0; j < children.length; j++) {
-            //      System.out.println(children[j]);
-        }
-        return new FileSystemModel.TreeFile(directory, children[index]);
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new Comparator<File>() {
+            public int compare(File f1, File f2) {
+                return Long.valueOf(f1.lastModified()).compareTo(f2.lastModified());
+            }
+        });
+        return new DateFileSystemModel.TreeFile(directory, children[index].getName());
     }
 
     public int getChildCount(Object parent) {
         File file = (File) parent;
         if (file.isDirectory()) {
-            String[] fileList = file.list();
-
-            if (fileList != null) {
-                return file.list().length;
-            }
+            return file.listFiles().length;
         }
         return 0;
     }
@@ -57,10 +56,15 @@ public class FileSystemModel implements TreeModel {
 
     public int getIndexOfChild(Object parent, Object child) {
         File directory = (File) parent;
-        File file = (File) child;
-        String[] children = directory.list();
+        File file = new File(directory, child.toString());
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new Comparator<File>() {
+            public int compare(File f1, File f2) {
+                return Long.valueOf(f1.lastModified()).compareTo(f2.lastModified());
+            }
+        });
         for (int i = 0; i < children.length; i++) {
-            if (file.getName().equals(children[i])) {
+            if (file.getName().equals(children[i].getName())) {
                 return i;
             }
         }
@@ -108,8 +112,7 @@ public class FileSystemModel implements TreeModel {
             return getName();
         }
     }
-
-    public void copyFile(File file) {
+      public void copyFile(File file) {
         copiedFile = file;
         isCut = false;
     }
@@ -145,7 +148,6 @@ public class FileSystemModel implements TreeModel {
         copiedFile = null;
     }
     public void refresh() {
-
         int[] indices = {0};
         Object[] children = {root};
         fireTreeNodesChanged(new TreePath(root), indices, children);
@@ -177,7 +179,7 @@ public class FileSystemModel implements TreeModel {
         boolean renamed = file.renameTo(newFile);
         if (renamed) {
             int[] indices = {getIndexOfChild(file.getParentFile(), newFile)};
-            Object[] children = {new TreeFile(file.getParentFile(), newName)};
+            Object[] children = {new DateFileSystemModel.TreeFile(file.getParentFile(), newName)};
             fireTreeNodesChanged(new TreePath(file.getParentFile()), indices, children);
         }
         return renamed;
@@ -254,3 +256,4 @@ public class FileSystemModel implements TreeModel {
         }
     }
 }
+

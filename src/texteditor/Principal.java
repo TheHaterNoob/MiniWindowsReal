@@ -5,15 +5,11 @@
  */
 package texteditor;
 
-import Menu.FileSystemModel;
-import Menu.ManejoFiles;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,10 +18,6 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Element;
-import javax.swing.text.Highlighter;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;

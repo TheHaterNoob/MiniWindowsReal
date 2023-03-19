@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-public class FileSystemModel implements TreeModel {
+public class SizeFileSystemModel implements TreeModel {
 
     private File root;
     private Vector listeners = new Vector();
     private File copiedFile;
     private boolean isCut;
 
-    public FileSystemModel(File rootDirectory) {
+    public SizeFileSystemModel(File rootDirectory) {
         root = rootDirectory;
     }
 
@@ -31,20 +32,17 @@ public class FileSystemModel implements TreeModel {
 
     public Object getChild(Object parent, int index) {
         File directory = (File) parent;
-        String[] children = directory.list();
-        for (int j = 0; j < children.length; j++) {
-            //      System.out.println(children[j]);
-        }
-        return new FileSystemModel.TreeFile(directory, children[index]);
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new SizeComparator()); // sort by file size
+        return new TreeFile(directory, children[index].getName());
     }
 
     public int getChildCount(Object parent) {
         File file = (File) parent;
         if (file.isDirectory()) {
-            String[] fileList = file.list();
-
+            File[] fileList = file.listFiles();
             if (fileList != null) {
-                return file.list().length;
+                return fileList.length;
             }
         }
         return 0;
@@ -58,9 +56,10 @@ public class FileSystemModel implements TreeModel {
     public int getIndexOfChild(Object parent, Object child) {
         File directory = (File) parent;
         File file = (File) child;
-        String[] children = directory.list();
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new SizeComparator()); // sort by file size
         for (int i = 0; i < children.length; i++) {
-            if (file.getName().equals(children[i])) {
+            if (file.getName().equals(children[i].getName())) {
                 return i;
             }
         }
@@ -109,6 +108,21 @@ public class FileSystemModel implements TreeModel {
         }
     }
 
+    private class SizeComparator implements Comparator<File> {
+
+        public int compare(File file1, File file2) {
+            long size1 = file1.length();
+            long size2 = file2.length();
+            if (size1 < size2) {
+                return -1;
+            } else if (size1 == size2) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+    }
+
     public void copyFile(File file) {
         copiedFile = file;
         isCut = false;
@@ -144,6 +158,16 @@ public class FileSystemModel implements TreeModel {
         }
         copiedFile = null;
     }
+
+    public void sortByName(File root) {
+        File[] files = root.listFiles();
+        Arrays.sort(files, (file1, file2) -> file1.getName().compareTo(file2.getName()));
+        for (File file : files) {
+            if (file.isDirectory()) {
+                sortByName(file);
+            }
+        }
+    }
     public void refresh() {
 
         int[] indices = {0};
@@ -177,7 +201,7 @@ public class FileSystemModel implements TreeModel {
         boolean renamed = file.renameTo(newFile);
         if (renamed) {
             int[] indices = {getIndexOfChild(file.getParentFile(), newFile)};
-            Object[] children = {new TreeFile(file.getParentFile(), newName)};
+            Object[] children = {new SizeFileSystemModel.TreeFile(file.getParentFile(), newName)};
             fireTreeNodesChanged(new TreePath(file.getParentFile()), indices, children);
         }
         return renamed;

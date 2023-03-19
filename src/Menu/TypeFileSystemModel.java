@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-public class FileSystemModel implements TreeModel {
+public class TypeFileSystemModel implements TreeModel {
 
     private File root;
     private Vector listeners = new Vector();
     private File copiedFile;
     private boolean isCut;
 
-    public FileSystemModel(File rootDirectory) {
+    public TypeFileSystemModel(File rootDirectory) {
         root = rootDirectory;
     }
 
@@ -31,20 +32,27 @@ public class FileSystemModel implements TreeModel {
 
     public Object getChild(Object parent, int index) {
         File directory = (File) parent;
-        String[] children = directory.list();
-        for (int j = 0; j < children.length; j++) {
-            //      System.out.println(children[j]);
-        }
-        return new FileSystemModel.TreeFile(directory, children[index]);
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new Comparator<File>() {
+            public int compare(File f1, File f2) {
+                if (f1.isDirectory() && !f2.isDirectory()) {
+                    return -1;
+                } else if (!f1.isDirectory() && f2.isDirectory()) {
+                    return 1;
+                } else {
+                    return f1.getName().compareToIgnoreCase(f2.getName());
+                }
+            }
+        });
+        return new TypeFileSystemModel.TreeFile(directory, children[index].getName());
     }
 
     public int getChildCount(Object parent) {
         File file = (File) parent;
         if (file.isDirectory()) {
-            String[] fileList = file.list();
-
+            File[] fileList = file.listFiles();
             if (fileList != null) {
-                return file.list().length;
+                return fileList.length;
             }
         }
         return 0;
@@ -57,10 +65,21 @@ public class FileSystemModel implements TreeModel {
 
     public int getIndexOfChild(Object parent, Object child) {
         File directory = (File) parent;
-        File file = (File) child;
-        String[] children = directory.list();
+        File file = new File(directory, child.toString());
+        File[] children = directory.listFiles();
+        Arrays.sort(children, new Comparator<File>() {
+            public int compare(File f1, File f2) {
+                if (f1.isDirectory() && !f2.isDirectory()) {
+                    return -1;
+                } else if (!f1.isDirectory() && f2.isDirectory()) {
+                    return 1;
+                } else {
+                    return f1.getName().compareToIgnoreCase(f2.getName());
+                }
+            }
+        });
         for (int i = 0; i < children.length; i++) {
-            if (file.getName().equals(children[i])) {
+            if (file.equals(children[i])) {
                 return i;
             }
         }
@@ -77,7 +96,6 @@ public class FileSystemModel implements TreeModel {
         int[] changedChildrenIndices = {getIndexOfChild(parent, targetFile)};
         Object[] changedChildren = {targetFile};
         fireTreeNodesChanged(path.getParentPath(), changedChildrenIndices, changedChildren);
-
     }
 
     private void fireTreeNodesChanged(TreePath parentPath, int[] indices, Object[] children) {
@@ -177,7 +195,7 @@ public class FileSystemModel implements TreeModel {
         boolean renamed = file.renameTo(newFile);
         if (renamed) {
             int[] indices = {getIndexOfChild(file.getParentFile(), newFile)};
-            Object[] children = {new TreeFile(file.getParentFile(), newName)};
+            Object[] children = {new TypeFileSystemModel.TreeFile(file.getParentFile(), newName)};
             fireTreeNodesChanged(new TreePath(file.getParentFile()), indices, children);
         }
         return renamed;
