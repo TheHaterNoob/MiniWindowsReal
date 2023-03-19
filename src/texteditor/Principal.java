@@ -69,12 +69,13 @@ public class Principal extends javax.swing.JInternalFrame {
         jToolBar2 = new javax.swing.JToolBar();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-	setClosable(true);
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Editor Texto");
+        setTitle("Palabra");
 
         tp_texto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(tp_texto);

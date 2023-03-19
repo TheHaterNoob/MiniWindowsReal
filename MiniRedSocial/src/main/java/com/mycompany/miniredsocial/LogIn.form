@@ -7,6 +7,8 @@
     </Property>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="MiniRed"/>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
       <Image iconType="0" name="null"/>
@@ -123,7 +125,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="820" y="580" width="313" height="43"/>
+          <AbsoluteConstraints x="750" y="540" width="240" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -139,7 +141,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1200" y="850" width="-1" height="-1"/>
+          <AbsoluteConstraints x="1020" y="540" width="220" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -181,7 +183,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="810" y="710" width="90" height="170"/>
+          <AbsoluteConstraints x="730" y="600" width="90" height="170"/>
         </Constraint>
       </Constraints>
     </Component>

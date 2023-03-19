@@ -31,7 +31,6 @@ public class Reproductor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         stio = new javax.swing.JLabel();
         panel = new javax.swing.JScrollPane();
@@ -40,19 +39,15 @@ public class Reproductor extends javax.swing.JInternalFrame {
         play = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Spotify");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rsz_298889_x_icon.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 40, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/propio/rsz_116427.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,12 +151,6 @@ private int currentIndex = -1;
         mp3player.pause();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       mp3player.stop();
-       
-       this.setVisible(false);
-    }//GEN-LAST:event_jLabel2MouseClicked
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -198,7 +187,6 @@ private int currentIndex = -1;
     private javax.swing.JLabel FONDO;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JList<String> lista;
     private javax.swing.JScrollPane panel;
