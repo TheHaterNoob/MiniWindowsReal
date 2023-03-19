@@ -24,20 +24,17 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form FrameInicio
      */
-    
-    ImageIcon imagenlogo = new ImageIcon("Imagenes/usuario.png");    
-    ProcesoLogin pl = new ProcesoLogin ();
+    ImageIcon imagenlogo = new ImageIcon("Imagenes/usuario.png");
+    ProcesoLogin pl = new ProcesoLogin();
     Users u = new Users();
-    public File file=null;
-    
-    
-    
+    public File file = null;
+
     public Inicio() {
         FlatDraculaIJTheme.setup();
         this.setUndecorated(true);
 
         initComponents();
-        this.setBackground(new Color(9,26,52));
+        this.setBackground(new Color(9, 26, 52));
         imgPerfil.setIcon(imagenlogo);
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
@@ -166,9 +163,7 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-     public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //FlatDraculaIJTheme.setup();
         /* Create and display the form */
@@ -189,41 +184,38 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnCrearUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseEntered
         // TODO add your handling code here:
-        btnCrearUsuario.setBackground(new Color(85,121,150));
-        txtCrear.setForeground(new Color(150,184,215));
+        btnCrearUsuario.setBackground(new Color(85, 121, 150));
+        txtCrear.setForeground(new Color(150, 184, 215));
     }//GEN-LAST:event_btnCrearUsuarioMouseEntered
 
     private void btnCrearUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseExited
         // TODO add your handling code here:
-        btnCrearUsuario.setBackground(new Color(148,184,215));
-        txtCrear.setForeground(new Color(2,29,52));
+        btnCrearUsuario.setBackground(new Color(148, 184, 215));
+        txtCrear.setForeground(new Color(2, 29, 52));
     }//GEN-LAST:event_btnCrearUsuarioMouseExited
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        
-        
+
         String nombre = this.txtUsuario.getText();
         String contra = this.txtContra.getText();
-        
-        
+
         try {
-            if(u.findUser(nombre, contra)){
-                String tipo=u.encontrartipo(nombre, contra);
+            if (u.findUser(nombre, contra)) {
+                String tipo = u.encontrartipo(nombre, contra);
                 JOptionPane.showMessageDialog(this, "Bienvenido!");
-                System.out.println("Usuario ingresado tipo: "+tipo);
+                System.out.println("Usuario ingresado tipo: " + tipo);
                 System.out.println(nombre);
                 this.dispose();
-                
+
                 MenuPrincipal m = new MenuPrincipal();
                 m.setVisible(true);
-                m.nombreIngresado=nombre;
-                m.tipoIngresado=tipo;
-                
-                
+                m.nombreIngresado = nombre;
+                m.tipoIngresado = tipo;
+
                 txtUsuario.setText("");
                 txtContra.setText("");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos, porfacor intentar denuevo");
                 txtUsuario.setText("");
                 txtContra.setText("");
@@ -243,8 +235,6 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonSalir;

@@ -144,55 +144,6 @@ public class FileSystemModel implements TreeModel {
         }
         copiedFile = null;
     }
-
-    public void sortByName(File root) {
-        File[] files = root.listFiles();
-        Arrays.sort(files, (file1, file2) -> file1.getName().compareTo(file2.getName()));
-        for (File file : files) {
-            if (file.isDirectory()) {
-                sortByName(file);
-            }
-        }
-    }
-
-    public void sortByDate(File root) {
-        File[] files = root.listFiles();
-        Arrays.sort(files, (file1, file2) -> Long.compare(file1.lastModified(), file2.lastModified()));
-        for (File file : files) {
-            if (file.isDirectory()) {
-                sortByDate(file);
-            }
-        }
-    }
-
-    public void sortBySize(File root) {
-        File[] files = root.listFiles();
-        Arrays.sort(files, (file1, file2) -> Long.compare(file1.length(), file2.length()));
-        for (File file : files) {
-            if (file.isDirectory()) {
-                sortBySize(file);
-            }
-        }
-    }
-
-    public void sortByType(File root) {
-        File[] files = root.listFiles();
-        Arrays.sort(files, (file1, file2) -> {
-            if (file1.isDirectory() && !file2.isDirectory()) {
-                return -1;
-            } else if (!file1.isDirectory() && file2.isDirectory()) {
-                return 1;
-            } else {
-                return file1.getName().compareTo(file2.getName());
-            }
-        });
-        for (File file : files) {
-            if (file.isDirectory()) {
-                sortByType(file);
-            }
-        }
-    }
-
     public void refresh() {
 
         int[] indices = {0};

@@ -20,11 +20,20 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
     int refresh = 0;
     File selectedFile;
     private FileSystemModel fileSystemModel;
+    private NameSortedFileSystemModel Name;
+    private DateFileSystemModel Date;
+    private TypeFileSystemModel Type;
+    private SizeFileSystemModel Size;
+    String sort = "Default";
 
     public ManejoFiles() {
         initComponents();
         File rootDirectory = new File("/");
         fileSystemModel = new FileSystemModel(rootDirectory);
+        Name = new NameSortedFileSystemModel(rootDirectory);
+        Date = new DateFileSystemModel(rootDirectory);
+        Type = new TypeFileSystemModel(rootDirectory);
+        Size = new SizeFileSystemModel(rootDirectory);
 
         JMenuItem copyItem = new JMenuItem("Copiar");
         JMenuItem cutItem = new JMenuItem("Cortar");
@@ -36,6 +45,8 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         JMenuItem organizar = new JMenuItem("Organizar");
         JMenuItem sortName = new JMenuItem("Ver por Nombre");
         JMenuItem sortDate = new JMenuItem("Ver por Fecha");
+        JMenuItem sortType = new JMenuItem("Ver por Tipo");
+        JMenuItem sortSize = new JMenuItem("Ver por Tamaño");
         popupMenu.add(copyItem);
         popupMenu.add(cutItem);
         popupMenu.add(pasteItem);
@@ -46,6 +57,8 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         popupMenu.add(organizar);
         popupMenu.add(sortName);
         popupMenu.add(sortDate);
+        popupMenu.add(sortType);
+        popupMenu.add(sortSize);
 
         jTree1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -112,6 +125,7 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 selectedFile = (File) jTree1.getLastSelectedPathComponent();
                 String renombre = JOptionPane.showInputDialog(null, "renombrar", null);
                 try {
+                    System.out.println("Hola");
                     rename(selectedFile, renombre);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -124,19 +138,29 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
                 selectedFile = (File) jTree1.getLastSelectedPathComponent();
                 if (selectedFile.isDirectory()) {
                     organizar(selectedFile);
-                }else{
-                JOptionPane.showMessageDialog(null, "por favor seleccione un folder", "ERROR", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "por favor seleccione un folder", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        sortName.setAction(new AbstractAction("Sort by Name") {
+        sortName.setAction(new AbstractAction("Ver por Nombre") {
             public void actionPerformed(ActionEvent e) {
                 sortbyName();
             }
         });
-        sortDate.setAction(new AbstractAction("Sort by Date") {
+        sortDate.setAction(new AbstractAction("Ver por Fecha") {
             public void actionPerformed(ActionEvent e) {
                 sortbyDate();
+            }
+        });
+        sortType.setAction(new AbstractAction("Ver por Tipo") {
+            public void actionPerformed(ActionEvent e) {
+                SortbyType();
+            }
+        });
+        sortSize.setAction(new AbstractAction("Ver por Tamaño") {
+            public void actionPerformed(ActionEvent e) {
+                SortbySize();
             }
         });
 
@@ -189,17 +213,71 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTree1FocusGained
     private void copyFile(File file) {
-        fileSystemModel.copyFile(file);
+        switch (sort) {
+            case "name":
+                Name.copyFile(file);
+                break;
+            case "date":
+                Date.copyFile(file);
+                break;
+            case "type":
+                Type.copyFile(file);
+                break;
+            case "size":
+                Size.copyFile(file);
+            default:
+                fileSystemModel.copyFile(file);
+                break;
+        }
+
     }
 
     private void cutFile(File file) {
-        fileSystemModel.cutFile(file);
+        switch (sort) {
+            case "name":
+                Name.cutFile(file);
+                break;
+            case "date":
+                Date.cutFile(file);
+                break;
+            case "type":
+                Type.cutFile(file);
+                break;
+            case "size":
+                Size.cutFile(file);
+                break;
+            default:
+                fileSystemModel.cutFile(file);
+                break;
+        }
+
     }
 
     private void pasteFile(File destinationFolder) {
         try {
-            fileSystemModel.pasteFile(destinationFolder);
-            refreshing();
+            switch (sort) {
+                case "name":
+                    Name.pasteFile(destinationFolder);
+                    refreshing();
+                    break;
+                case "date":
+                    Date.pasteFile(destinationFolder);
+                    refreshing();
+                    break;
+                case "type":
+                    Type.pasteFile(destinationFolder);
+                    refreshing();
+                    break;
+                case "size":
+                    Size.pasteFile(destinationFolder);
+                    refreshing();
+                    break;
+                default:
+                    fileSystemModel.pasteFile(destinationFolder);
+                    refreshing();
+                    break;
+            }
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "ERROR (usualmente es por no seleccionar un folder)", "ERROR", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
@@ -207,53 +285,204 @@ public class ManejoFiles extends javax.swing.JInternalFrame {
     }
 
     private void refreshing() {
-        if (tipo.equals("Administrador")) {
-            FileSystemModel model = new FileSystemModel(new File("Z"));
-            model.refresh();
-            jTree1.setModel(model);
-        } else {
-            FileSystemModel model = new FileSystemModel(new File("Z/" + nombre));
-            model.refresh();
-            jTree1.setModel(model);
+        switch (sort) {
+            case "name":
+                if (tipo.equals("Administrador")) {
+                    NameSortedFileSystemModel model = new NameSortedFileSystemModel(new File("Z"));
+                    model.refresh();
+                    jTree1.setModel(model);
+                } else {
+                    NameSortedFileSystemModel model = new NameSortedFileSystemModel(new File("Z/" + nombre));
+                    model.refresh();
+                    jTree1.setModel(model);
+                }
+                break;
+            case "date":
+                if (tipo.equals("Administrador")) {
+                    DateFileSystemModel model = new DateFileSystemModel(new File("Z"));
+                    model.refresh();
+                    jTree1.setModel(model);
+                } else {
+                    DateFileSystemModel model = new DateFileSystemModel(new File("Z/" + nombre));
+                    model.refresh();
+                    jTree1.setModel(model);
+                }
+                break;
+            case "type":
+                if (tipo.equals("Administrador")) {
+                    TypeFileSystemModel model = new TypeFileSystemModel(new File("Z"));
+                    model.refresh();
+                    jTree1.setModel(model);
+                } else {
+                    TypeFileSystemModel model = new TypeFileSystemModel(new File("Z/" + nombre));
+                    model.refresh();
+                    jTree1.setModel(model);
+                }
+                break;
+            case "size":
+                if (tipo.equals("Administrador")) {
+                    SizeFileSystemModel model = new SizeFileSystemModel(new File("Z"));
+                    model.refresh();
+                    jTree1.setModel(model);
+                } else {
+                    SizeFileSystemModel model = new SizeFileSystemModel(new File("Z/" + nombre));
+                    model.refresh();
+                    jTree1.setModel(model);
+                }
+                break;
+            default:
+                if (tipo.equals("Administrador")) {
+                    FileSystemModel model = new FileSystemModel(new File("Z"));
+                    model.refresh();
+                    jTree1.setModel(model);
+                } else {
+                    FileSystemModel model = new FileSystemModel(new File("Z/" + nombre));
+                    model.refresh();
+                    jTree1.setModel(model);
+                }
+                break;
         }
     }
 
     private void sortbyName() {
+        sort = "name";
         if (tipo.equals("Administrador")) {
-            fileSystemModel.sortByName(new File("Z"));
+            jTree1.setModel(new NameSortedFileSystemModel(new File("Z")));
         } else {
-            fileSystemModel.sortByName(new File("Z/" + nombre));
+            jTree1.setModel(new NameSortedFileSystemModel(new File("Z/" + nombre)));
         }
 
     }
 
     private void sortbyDate() {
+        sort = "date";
         if (tipo.equals("Administrador")) {
-            fileSystemModel.sortByDate(new File("Z"));
+            jTree1.setModel(new DateFileSystemModel(new File("Z")));
         } else {
-            fileSystemModel.sortByDate(new File("Z/" + nombre));
+            jTree1.setModel(new DateFileSystemModel(new File("Z/" + nombre)));
+        }
+    }
+
+    private void SortbyType() {
+        sort = "type";
+        if (tipo.equals("Administrador")) {
+            jTree1.setModel(new TypeFileSystemModel(new File("Z")));
+        } else {
+            jTree1.setModel(new TypeFileSystemModel(new File("Z/" + nombre)));
+        }
+    }
+
+    private void SortbySize() {
+        sort = "size";
+        if (tipo.equals("Administrador")) {
+            jTree1.setModel(new SizeFileSystemModel(new File("Z")));
+        } else {
+            jTree1.setModel(new SizeFileSystemModel(new File("Z/" + nombre)));
+        }
+    }
+
+    private void newFile(File file) throws IOException {
+        switch (sort) {
+            case "name":
+                Name.createFile(file, "New File");
+                refreshing();
+                break;
+            case "date":
+                Date.createFile(file, "New File");
+                refreshing();
+                break;
+            case "type":
+                Type.createFile(file, "New File");
+                refreshing();
+                break;
+            case "size":
+                Size.createFile(file, "New File");
+                refreshing();
+                break;
+            default:
+                fileSystemModel.createFile(file, "New File");
+                refreshing();
+                break;
         }
 
     }
 
-    private void newFile(File file) throws IOException {
-        fileSystemModel.createFile(file, "New File");
-        refreshing();
-    }
-
     private void newFolder(File file) throws IOException {
-        fileSystemModel.createFolder(file, "New Folder");
-        refreshing();
+        switch (sort) {
+            case "name":
+                Name.createFolder(file, "New File");
+                refreshing();
+                break;
+            case "date":
+                Date.createFolder(file, "New File");
+                refreshing();
+                break;
+            case "type":
+                Type.createFolder(file, "New File");
+                refreshing();
+                break;
+            case "size":
+                Size.createFolder(file, "New File");
+                refreshing();
+                break;
+            default:
+                fileSystemModel.createFolder(file, "New File");
+                refreshing();
+                break;
+        }
     }
 
     private void rename(File file, String string) throws IOException {
-        fileSystemModel.rename(file, string);
-        refreshing();
+        System.out.println("Adios");
+        switch (sort) {
+            case "name":
+                Name.rename(file, string);
+                refreshing();
+                break;
+            case "date":
+                Date.rename(file, string);
+                refreshing();
+                break;
+            case "type":
+                Type.rename(file, string);
+                refreshing();
+                break;
+            case "size":
+                Size.rename(file, string);
+                refreshing();
+                break;
+            default:
+                fileSystemModel.rename(file, string);
+                refreshing();
+                break;
+        }
+
     }
 
     private void organizar(File file) {
-        fileSystemModel.sortFiles(file);
-        refreshing();
+        switch (sort) {
+            case "name":
+                Name.sortFiles(file);
+                refreshing();
+                break;
+            case "date":
+                Date.sortFiles(file);
+                refreshing();
+                break;
+            case "type":
+                Type.sortFiles(file);
+                refreshing();
+                break;
+            case "size":
+                Size.sortFiles(file);
+                refreshing();
+                break;
+            default:
+                fileSystemModel.sortFiles(file);
+                refreshing();
+                break;
+        }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
