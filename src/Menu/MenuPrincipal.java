@@ -32,7 +32,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setMaximumSize(screenSize);
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        ImageIcon imageIcon = new ImageIcon("Backgroundtest.png");
+        ImageIcon imageIcon = new ImageIcon("fondo.png");
         JLabel backgroundLabel = new JLabel(imageIcon);
 
         backgroundLabel.setBounds(0, 0, Escritorio.getWidth(), Escritorio.getHeight());
