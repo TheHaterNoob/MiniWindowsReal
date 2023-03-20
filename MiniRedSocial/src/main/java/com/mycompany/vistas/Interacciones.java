@@ -147,7 +147,7 @@ public class Interacciones extends javax.swing.JPanel {
     private void cargarTwits() throws IOException, FileNotFoundException, NoExisteUsr{
         
         content.removeAll();
-        content.setLayout(new FlowLayout(FlowLayout.TRAILING,0,0));
+        content.setLayout(new FlowLayout(FlowLayout.LEADING,0,0));
         
         twits = adm_usr.cargarInteracciones();
         
