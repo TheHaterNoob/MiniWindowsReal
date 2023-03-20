@@ -73,7 +73,6 @@ public class Principal extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Palabra");
 

@@ -43,7 +43,6 @@ public class principal extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));

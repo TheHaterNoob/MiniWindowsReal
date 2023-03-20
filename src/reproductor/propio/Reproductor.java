@@ -42,9 +42,25 @@ public class Reproductor extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Spotify");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,9 +136,12 @@ private int currentIndex = -1;
         JFileChooser fileChooser = new JFileChooser();
         if (tipo.equals("Administrador")) {
             fileChooser.setCurrentDirectory(new File("Z"));
+            
         } else {
             fileChooser.setCurrentDirectory(new File("Z/" + nombre));
         }
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setFileHidingEnabled(true);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos MP3", "mp3");
         fileChooser.setFileFilter(filter);
 
@@ -150,6 +169,10 @@ private int currentIndex = -1;
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         mp3player.pause();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        mp3player.stop();
+    }//GEN-LAST:event_formInternalFrameClosed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
