@@ -120,6 +120,7 @@ private int currentIndex = -1;
         JFileChooser fileChooser = new JFileChooser();
         if (tipo.equals("Administrador")) {
             fileChooser.setCurrentDirectory(new File("Z"));
+            
         } else {
             fileChooser.setCurrentDirectory(new File("Z/" + nombre));
         }

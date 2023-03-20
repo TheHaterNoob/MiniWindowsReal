@@ -105,26 +105,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-        btnCrearUsuario.setBackground(new java.awt.Color(148, 184, 215));
-        btnCrearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCrearUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCrearUsuarioMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCrearUsuarioMouseExited(evt);
-            }
-        });
-        btnCrearUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtCrear.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
-        txtCrear.setForeground(new java.awt.Color(2, 29, 52));
-        txtCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCrearUsuario.add(txtCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-=======
->>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
         BotonSalir.setBackground(new java.awt.Color(2, 29, 52));
         BotonSalir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Apagado.png"))); // NOI18N
@@ -149,12 +129,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotonSalir)
-<<<<<<< HEAD
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
                 .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,23 +140,6 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(imgPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(239, 239, 239)
-                        .addComponent(btnCrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonSalir)
-                        .addContainerGap())))
-=======
                 .addContainerGap(304, Short.MAX_VALUE)
                 .addComponent(imgPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
@@ -194,7 +152,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BotonSalir)
                 .addContainerGap())
->>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,18 +224,6 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_BotonSalirActionPerformed
-
-    private void btnCrearUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseExited
-        // TODO add your handling code here:
-        btnCrearUsuario.setBackground(new Color(148, 184, 215));
-        txtCrear.setForeground(new Color(2, 29, 52));
-    }//GEN-LAST:event_btnCrearUsuarioMouseExited
-
-    private void btnCrearUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseEntered
-        // TODO add your handling code here:
-        btnCrearUsuario.setBackground(new Color(85, 121, 150));
-        txtCrear.setForeground(new Color(150, 184, 215));
-    }//GEN-LAST:event_btnCrearUsuarioMouseEntered
 
     /**
      * @param args the command line arguments
