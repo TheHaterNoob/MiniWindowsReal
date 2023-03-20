@@ -42,7 +42,6 @@ public class Reproductor extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Spotify");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -141,6 +140,8 @@ private int currentIndex = -1;
         } else {
             fileChooser.setCurrentDirectory(new File("Z/" + nombre));
         }
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setFileHidingEnabled(true);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos MP3", "mp3");
         fileChooser.setFileFilter(filter);
 

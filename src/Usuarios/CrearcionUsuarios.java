@@ -39,7 +39,6 @@ public class CrearcionUsuarios extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
 
         Salir.setText("Salir");

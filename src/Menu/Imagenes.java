@@ -33,7 +33,6 @@ public class Imagenes extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Mis Imagenes");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
