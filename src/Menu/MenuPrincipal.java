@@ -1,12 +1,15 @@
 package Menu;
 
 import Usuarios.*;
+import cmd.principal;
 import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
 import com.mycompany.miniredsocial.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import reproductor.propio.Reproductor;  
+import reproductor.propio.Reproductor;
 import texteditor.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -14,13 +17,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static String nombreIngresado;
     public String tipoIngresado;
     public String contra;
-    
 
     CrearcionUsuarios CU = new CrearcionUsuarios();
     ManejoFiles MF = new ManejoFiles();
 
-    
-    
     public MenuPrincipal() {
         FlatDraculaIJTheme.setup();
 
@@ -32,6 +32,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setMaximumSize(screenSize);
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        ImageIcon imageIcon = new ImageIcon("Backgroundtest.png");
+        JLabel backgroundLabel = new JLabel(imageIcon);
+
+        backgroundLabel.setBounds(0, 0, Escritorio.getWidth(), Escritorio.getHeight());
+
+        Escritorio.add(backgroundLabel, new Integer(Integer.MIN_VALUE));
+        Escritorio.setComponentZOrder(backgroundLabel, 0);
 
         jMenuBar1.setAlignmentX(CENTER_ALIGNMENT);
     }
@@ -61,23 +68,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1440, 810));
 
+        jPanel1.setMinimumSize(new java.awt.Dimension(1440, 810));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1440, 810));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2974, Short.MAX_VALUE)
+            .addGap(0, 1550, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1201, Short.MAX_VALUE)
+            .addGap(0, 810, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(Escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1550, 810));
 
         jMenuBar1.setForeground(new java.awt.Color(240, 240, 240));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(1093, 100));
 
         CreacionUsuarios.setForeground(new java.awt.Color(240, 240, 240));
         CreacionUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarUser.png"))); // NOI18N
@@ -184,11 +195,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 2146, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1550, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,15 +266,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu6MouseClicked
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-        // TODO add your handling code here:
+        principal cmd = new principal();
+        cmd.nombre=this.nombreIngresado;
+        cmd.tipo = this.tipoIngresado;
+        Escritorio.add(cmd);
+        cmd.show();
     }//GEN-LAST:event_jMenu7MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-       Reproductor spotify = new Reproductor();
-      spotify.nombre=this.nombreIngresado;
-      spotify.tipo=this.tipoIngresado;
+        Reproductor spotify = new Reproductor();
+        spotify.nombre = this.nombreIngresado;
+        spotify.tipo = this.tipoIngresado;
         Escritorio.add(spotify);
-        
+
         spotify.show();
     }//GEN-LAST:event_jMenu5MouseClicked
 
@@ -267,7 +286,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         LogIn mp = new LogIn(Escritorio);
-        
+
         mp.setVisible(true);
         Escritorio.add(mp);
     }//GEN-LAST:event_jMenu3MouseClicked

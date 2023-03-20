@@ -86,6 +86,8 @@ public class LogIn extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(41, 45, 62));
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("MiniRed");
         setFrameIcon(null);
         try {
@@ -129,7 +131,7 @@ public class LogIn extends javax.swing.JInternalFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 580, 313, 43));
+        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 540, 240, 30));
 
         btnCrearUsuario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         btnCrearUsuario.setText("Crear Usuario");
@@ -138,7 +140,7 @@ public class LogIn extends javax.swing.JInternalFrame {
                 btnCrearUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 850, -1, -1));
+        getContentPane().add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 220, 30));
 
         txtContra.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtContra.setMargin(new java.awt.Insets(10, 10, 10, 10));
@@ -149,7 +151,7 @@ public class LogIn extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 20, 160, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/balloon.gif"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 710, 90, 170));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 600, 90, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
