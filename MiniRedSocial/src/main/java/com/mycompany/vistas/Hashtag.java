@@ -47,7 +47,7 @@ public class Hashtag extends javax.swing.JPanel {
     private void cargarTwits(String[] tag) throws IOException, FileNotFoundException, NoExisteUsr{
         
         content.removeAll();
-        content.setLayout(new FlowLayout(FlowLayout.TRAILING,0,0));
+        content.setLayout(new FlowLayout(FlowLayout.LEADING,0,0));
         
         
         
@@ -133,7 +133,8 @@ public class Hashtag extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(910, 720));
 
-        background.setPreferredSize(new java.awt.Dimension(880, 880));
+        background.setMinimumSize(new java.awt.Dimension(910, 720));
+        background.setPreferredSize(new java.awt.Dimension(910, 720));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtHashtag.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -150,8 +151,8 @@ public class Hashtag extends javax.swing.JPanel {
                 txtHashtagKeyReleased(evt);
             }
         });
-        background.add(txtHashtag, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 805, 31));
-        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 905, 20));
+        background.add(txtHashtag, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 760, 31));
+        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 830, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-hash2.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -161,12 +162,14 @@ public class Hashtag extends javax.swing.JPanel {
         content_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         content_scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        content_scroll.setMinimumSize(new java.awt.Dimension(1041, 713));
-        content_scroll.setPreferredSize(new java.awt.Dimension(1040, 713));
+        content_scroll.setMaximumSize(new java.awt.Dimension(880, 32767));
+        content_scroll.setMinimumSize(new java.awt.Dimension(880, 740));
+        content_scroll.setPreferredSize(new java.awt.Dimension(880, 740));
         content_scroll.setRequestFocusEnabled(false);
 
         content.setAutoscrolls(true);
-        content.setMinimumSize(new java.awt.Dimension(0, 0));
+        content.setMaximumSize(new java.awt.Dimension(880, 32767));
+        content.setMinimumSize(new java.awt.Dimension(880, 0));
         content.setName(""); // NOI18N
         content.setPreferredSize(new java.awt.Dimension(880, 740));
 
@@ -174,7 +177,7 @@ public class Hashtag extends javax.swing.JPanel {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 943, Short.MAX_VALUE)
+            .addGap(0, 880, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +186,7 @@ public class Hashtag extends javax.swing.JPanel {
 
         content_scroll.setViewportView(content);
 
-        background.add(content_scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 960, 600));
+        background.add(content_scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 880, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,7 +196,7 @@ public class Hashtag extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
