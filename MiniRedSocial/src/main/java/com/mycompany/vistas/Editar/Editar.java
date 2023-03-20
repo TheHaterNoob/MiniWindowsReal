@@ -33,13 +33,20 @@ public class Editar extends javax.swing.JPanel {
     javax.swing.JInternalFrame parent;
 
     private javax.swing.JDesktopPane escritorio;
+    
+    
+    public String nombre;
+    public String tipo;
 
-    public Editar(Func_usuario adm_usr, javax.swing.JInternalFrame parent, javax.swing.JDesktopPane escritorio) {
+    public Editar(Func_usuario adm_usr, javax.swing.JInternalFrame parent, javax.swing.JDesktopPane escritorio, String nombre, String tipo) {
         
         initComponents();
         this.escritorio = escritorio;
         this.parent = parent;
         this.adm_usr = adm_usr;
+        
+        this.tipo = tipo;
+        this.nombre = nombre;
         
         data = null;
         
@@ -190,7 +197,7 @@ public class Editar extends javax.swing.JPanel {
             if (opc == 0) {
                 adm_usr.descUsuario();
                 parent.dispose();
-                LogIn p = new LogIn(escritorio);
+                LogIn p = new LogIn(escritorio,nombre, tipo);
                 escritorio.add(p);
                 p.show();
             }

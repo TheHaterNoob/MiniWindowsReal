@@ -42,7 +42,13 @@ public class CrearUsuario extends javax.swing.JDialog {
     private File img_p;
     private final File img_default = new File("varios/icon_usuario.png");
     
-    public CrearUsuario(javax.swing.JInternalFrame padre) {
+    public String nombre;
+    public String tipo;
+    
+    public CrearUsuario(javax.swing.JInternalFrame padre, String nombre, String tipo) {
+        
+        this.nombre = nombre;
+        this.tipo = tipo;
         initComponents();
         this.setModal(true);
         
@@ -111,6 +117,13 @@ public class CrearUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         JFileChooser chooser = new JFileChooser();
+
+        if (tipo.equals("Administrador")) {
+            chooser.setCurrentDirectory(new File("Z"));
+        } else 
+            chooser.setCurrentDirectory(new File("Z/" + nombre));
+       
+        
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes", "jpg", "jpeg", "png");
         chooser.setFileFilter(filter);
 
@@ -122,9 +135,8 @@ public class CrearUsuario extends javax.swing.JDialog {
                 File img_selected = chooser.getSelectedFile();
 
                 BufferedImage originalImage = ImageIO.read(img_selected);
-             
-               // JOptionPane.showMessageDialog(this, "selecionada", "s", 1, new ImageIcon(originalImage));
 
+                // JOptionPane.showMessageDialog(this, "selecionada", "s", 1, new ImageIcon(originalImage));
                 // Crear una nueva imagen escalada con el tamaño deseado
                 BufferedImage scaledImage = null;
                 scaledImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
@@ -134,23 +146,18 @@ public class CrearUsuario extends javax.swing.JDialog {
                 g2d = scaledImage.createGraphics();
                 g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
                 g2d.drawImage(originalImage, 0, 0, 100, 100, null);
-               
+
                 g2d.dispose();
 
-                
                 // Guardar la imagen escalada en un archivo
-                
                 img_p = new File("RedRetro/foto_perfil_temp.jpg");
-                ImageIO.write(scaledImage, "jpg",  img_p);
-                
+                ImageIO.write(scaledImage, "jpg", img_p);
+
                 //JOptionPane.showMessageDialog(this, "Imagen seleccionnada", "otro", 1, new ImageIcon(img_p.getPath()));
-                
-                
-                
-                ImageIcon perfil = new ImageIcon( img_p.getAbsolutePath());
-                
+                ImageIcon perfil = new ImageIcon(img_p.getAbsolutePath());
+
                 lbl_img.setIcon(new ImageIcon(img_p.getPath()));
-                
+
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error en la seleccion de imagen\n " + e.getMessage());
             }
@@ -159,7 +166,7 @@ public class CrearUsuario extends javax.swing.JDialog {
 
     }
 
-       
+
     
     /**
      * This method is called from within the constructor to initialize the form.

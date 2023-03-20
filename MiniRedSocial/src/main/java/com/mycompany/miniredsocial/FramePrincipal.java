@@ -27,19 +27,25 @@ import javax.swing.JPanel;
  * @author kelvi
  */
 public class FramePrincipal extends javax.swing.JInternalFrame {
-    
+
     private Func_usuario adm_usr;
-    
+
     private LabelPerfil foto_img;
 
-     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JDesktopPane escritorio;
+
+    public String nombre;
+    public String tipo;
+
     /**
      * Creates new form FrameSocial
      */
-    public FramePrincipal(String user, javax.swing.JDesktopPane escritorio) throws FileNotFoundException, NoExisteUsr {
+    public FramePrincipal(String user, javax.swing.JDesktopPane escritorio, String nombre, String tipo) throws FileNotFoundException, NoExisteUsr {
         FlatMaterialPalenightIJTheme.setup();
         initComponents();
         this.escritorio = escritorio;
+        this.tipo = tipo;
+        this.nombre = nombre;
         this.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(66,72,99));
         
         try {
@@ -308,7 +314,7 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
 
-        Editar p = new Editar(adm_usr, this, escritorio);
+        Editar p = new Editar(adm_usr, this, escritorio, nombre, tipo);
         p.setLocation(0, 0);
         p.setSize(1110, 870);
         
@@ -338,7 +344,7 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         this.dispose();
-        LogIn p =  new LogIn(escritorio);
+        LogIn p =  new LogIn(escritorio, nombre, tipo);
         escritorio.add(p);
         p.show();
 

@@ -370,7 +370,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
 
-        LogIn mp = new LogIn(Escritorio);
+        LogIn mp = new LogIn(Escritorio, nombreIngresado,tipoIngresado);
 
         mp.setVisible(true);
         Escritorio.add(mp);
@@ -418,7 +418,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-       LogIn mp = new LogIn(Escritorio);
+       LogIn mp = new LogIn(Escritorio, nombreIngresado, tipoIngresado);
 
         mp.setVisible(true);
         Escritorio.add(mp);

@@ -27,12 +27,18 @@ public class LogIn extends javax.swing.JInternalFrame {
      * Creates new form LogIn
      */
     
+    
+    public String nombre;
+    public String tipo;
+    
     private RandomAccessFile f_usuarios;
     
     private javax.swing.JDesktopPane escritorio;
     
-    public LogIn(javax.swing.JDesktopPane escritorio) {
+    public LogIn(javax.swing.JDesktopPane escritorio, String nombre, String tipo) {
         
+        this.tipo = tipo;
+        this.nombre = nombre;
         FlatMaterialPalenightIJTheme.setup();
         initComponents();
         this.setVisible(true);
@@ -221,7 +227,7 @@ public class LogIn extends javax.swing.JInternalFrame {
                     if (temp.isActivo()) {
 
                         this.dispose();
-                        FramePrincipal p = new FramePrincipal(txtUsuario.getText(), escritorio);
+                        FramePrincipal p = new FramePrincipal(txtUsuario.getText(), escritorio, nombre, tipo);
                         escritorio.add(p);
                         p.show();
 
@@ -233,7 +239,7 @@ public class LogIn extends javax.swing.JInternalFrame {
                         
                         
                         this.dispose();
-                        FramePrincipal p = new FramePrincipal(txtUsuario.getText(), escritorio);
+                        FramePrincipal p = new FramePrincipal(txtUsuario.getText(), escritorio, nombre, tipo);
                         escritorio.add(p);
                         p.show();
                         
@@ -265,7 +271,7 @@ public class LogIn extends javax.swing.JInternalFrame {
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
         // TODO add your handling code here:
         
-        CrearUsuario p = new CrearUsuario(this);
+        CrearUsuario p = new CrearUsuario(this, nombre, tipo);
         
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
