@@ -128,10 +128,12 @@ public class Hashtag extends javax.swing.JPanel {
         txtHashtag = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         content_scroll = new javax.swing.JScrollPane();
         content = new javax.swing.JPanel();
 
+        setPreferredSize(new java.awt.Dimension(910, 720));
+
+        background.setPreferredSize(new java.awt.Dimension(880, 880));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtHashtag.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -148,16 +150,12 @@ public class Hashtag extends javax.swing.JPanel {
                 txtHashtagKeyReleased(evt);
             }
         });
-        background.add(txtHashtag, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 805, 31));
-        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 143, 905, -1));
+        background.add(txtHashtag, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 805, 31));
+        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 905, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-hash2.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 70, 51));
-
-        jLabel2.setFont(new java.awt.Font("Monospaced", 1, 48)); // NOI18N
-        jLabel2.setText("HAHSTAGS");
-        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 243, 40));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 70, 51));
 
         content_scroll.setBorder(null);
         content_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -168,14 +166,15 @@ public class Hashtag extends javax.swing.JPanel {
         content_scroll.setRequestFocusEnabled(false);
 
         content.setAutoscrolls(true);
-        content.setMinimumSize(new java.awt.Dimension(1044, 0));
+        content.setMinimumSize(new java.awt.Dimension(0, 0));
         content.setName(""); // NOI18N
+        content.setPreferredSize(new java.awt.Dimension(880, 740));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 943, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,17 +183,17 @@ public class Hashtag extends javax.swing.JPanel {
 
         content_scroll.setViewportView(content);
 
-        background.add(content_scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1070, 660));
+        background.add(content_scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 960, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,7 +252,6 @@ public class Hashtag extends javax.swing.JPanel {
     private javax.swing.JPanel content;
     private javax.swing.JScrollPane content_scroll;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtHashtag;
     // End of variables declaration//GEN-END:variables

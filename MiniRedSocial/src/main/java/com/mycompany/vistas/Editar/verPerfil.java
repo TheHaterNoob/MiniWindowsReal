@@ -332,8 +332,9 @@ public class verPerfil extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ahora sigues a " + selectUsr.getUser(),
                     "Editar", JOptionPane.INFORMATION_MESSAGE, null);
 
-            new verPerfil(parent, logUsr, selectUsr);
+            
             this.dispose();
+            new verPerfil(parent, logUsr, selectUsr);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -351,8 +352,9 @@ public class verPerfil extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Dejaste de seguir a " + selectUsr.getUser(),
                     "Editar", JOptionPane.INFORMATION_MESSAGE, null);
 
-            new verPerfil(parent, logUsr, selectUsr);
+            
             this.dispose();
+            new verPerfil(parent, logUsr, selectUsr);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
