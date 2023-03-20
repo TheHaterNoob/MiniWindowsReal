@@ -69,13 +69,16 @@ public class Editar extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(1080, 870));
-        setPreferredSize(new java.awt.Dimension(1080, 870));
+        setMinimumSize(new java.awt.Dimension(910, 720));
+        setPreferredSize(new java.awt.Dimension(910, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        background.setMinimumSize(new java.awt.Dimension(1080, 870));
-        background.setPreferredSize(new java.awt.Dimension(1080, 870));
+        background.setMinimumSize(new java.awt.Dimension(910, 720));
+        background.setPreferredSize(new java.awt.Dimension(910, 720));
+        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_buscar.png"))); // NOI18N
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, -1, 59));
 
         btnDesactivar.setText("Desactivar Cuenta");
         btnDesactivar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +86,7 @@ public class Editar extends javax.swing.JPanel {
                 btnDesactivarActionPerformed(evt);
             }
         });
+        background.add(btnDesactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 660, 162, 42));
 
         tbCoincidencias.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         tbCoincidencias.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,71 +109,24 @@ public class Editar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbCoincidencias);
         tbCoincidencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 860, 460));
+        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 85, 680, -1));
+
         txtBuscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
         });
+        background.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 41, 622, 31));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dioses.gif"))); // NOI18N
         jLabel2.setText("jLabel2");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 500, 190));
 
-        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
-        background.setLayout(backgroundLayout);
-        backgroundLayout.setHorizontalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(810, 810, 810)
-                        .addComponent(jLabel1))))
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(880, 880, 880)
-                .addComponent(btnDesactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        backgroundLayout.setVerticalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(680, 680, 680)
-                        .addComponent(btnDesactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(550, 550, 550)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased

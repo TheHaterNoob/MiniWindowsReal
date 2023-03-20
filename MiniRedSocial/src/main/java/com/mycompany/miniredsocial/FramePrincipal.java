@@ -55,7 +55,7 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
             bgMain.setLayout(null);
             
             foto_img = new LabelPerfil(100);
-            foto_img.setBounds(90, 20, 100, 100);
+            foto_img.setBounds(70, 20, 100, 100);
             
             foto_img.setIcon(new ImageIcon(adm_usr.getImg_perfil()));
             bgMain.add(foto_img);
@@ -120,14 +120,18 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("MiniRed");
-        setFrameIcon(new javax.swing.ImageIcon("C:\\Users\\kelvi\\OneDrive\\Documentos\\Doc Clases\\Programacion II\\MiniRedSocial\\varios\\icon.png")); // NOI18N
-        setMinimumSize(new java.awt.Dimension(1350, 900));
+        setFrameIcon(null);
+        setMinimumSize(new java.awt.Dimension(1150, 750));
+        setPreferredSize(new java.awt.Dimension(1150, 750));
 
         Backgroud.setBackground(new java.awt.Color(204, 204, 204));
-        Backgroud.setMinimumSize(new java.awt.Dimension(1350, 865));
+        Backgroud.setMinimumSize(new java.awt.Dimension(1150, 720));
+        Backgroud.setName(""); // NOI18N
+        Backgroud.setPreferredSize(new java.awt.Dimension(1150, 720));
 
         bgMain.setBackground(new java.awt.Color(66, 72, 99));
-        bgMain.setMinimumSize(new java.awt.Dimension(270, 870));
+        bgMain.setMinimumSize(new java.awt.Dimension(270, 720));
+        bgMain.setPreferredSize(new java.awt.Dimension(270, 720));
 
         txtNombre_P.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtNombre_P.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -211,19 +215,19 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
         bgMainLayout.setHorizontalGroup(
             bgMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgMainLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(img_perfil))
-            .addGroup(bgMainLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(txtNombre_P, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnInteracciones, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnHashtag, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(bgMainLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(bgMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombre_P, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInteracciones, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHashtag, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(bgMainLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(bgMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(img_perfil)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30))
         );
         bgMainLayout.setVerticalGroup(
             bgMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,27 +237,27 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
                 .addGap(117, 117, 117)
                 .addComponent(txtNombre_P, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnInteracciones, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInteracciones, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnHashtag, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHashtag, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        content.setMinimumSize(new java.awt.Dimension(1080, 870));
-        content.setPreferredSize(new java.awt.Dimension(1080, 870));
+        content.setMinimumSize(new java.awt.Dimension(910, 720));
+        content.setPreferredSize(new java.awt.Dimension(910, 720));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 910, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,13 +269,13 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
         BackgroudLayout.setHorizontalGroup(
             BackgroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroudLayout.createSequentialGroup()
-                .addComponent(bgMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bgMain, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BackgroudLayout.setVerticalGroup(
             BackgroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(content, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -279,11 +283,11 @@ public class FramePrincipal extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Backgroud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Backgroud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
