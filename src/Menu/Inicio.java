@@ -53,8 +53,6 @@ public class Inicio extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtContra = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        btnCrearUsuario = new javax.swing.JPanel();
-        txtCrear = new javax.swing.JLabel();
         BotonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,6 +105,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnCrearUsuario.setBackground(new java.awt.Color(148, 184, 215));
         btnCrearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrearUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,6 +123,8 @@ public class Inicio extends javax.swing.JFrame {
         txtCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrearUsuario.add(txtCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
+=======
+>>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
         BotonSalir.setBackground(new java.awt.Color(2, 29, 52));
         BotonSalir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Apagado.png"))); // NOI18N
@@ -148,8 +149,12 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotonSalir)
+<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGap(0, 0, Short.MAX_VALUE))
+>>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,6 +165,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -175,6 +181,20 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BotonSalir)
                         .addContainerGap())))
+=======
+                .addContainerGap(304, Short.MAX_VALUE)
+                .addComponent(imgPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonSalir)
+                .addContainerGap())
+>>>>>>> bf4277cffb6b3856bf6f376f68e88ff1464ae3ca
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,12 +286,10 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JPanel btnCrearUsuario;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel imgPerfil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtContra;
-    private javax.swing.JLabel txtCrear;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
