@@ -250,7 +250,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu7);
 
         jMenu3.setForeground(new java.awt.Color(240, 240, 240));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rsz_screenshot_7.png"))); // NOI18N
         jMenu3.setText("MiniRed");
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

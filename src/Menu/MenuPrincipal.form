@@ -113,7 +113,7 @@
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/icon.png"/>
+              <Image iconType="3" name="/Imagenes/rsz_screenshot_7.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="MiniRed"/>
           </Properties>
