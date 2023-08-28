@@ -1,6 +1,6 @@
 # Mini Windows
 
- Game made for Programming II class
+Project made for Programming II class
 
 Project Made in Java. Most applications are made using JInternalFrame
 
